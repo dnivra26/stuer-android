@@ -7,4 +7,5 @@
     <string name="i_want_to">I want to</string>
     <string name="title_activity_teacher_home">TeacherHomeActivity</string>
     <string name="create_session">Create Session</string>
+    <string name="request">REQUEST</string>
 </resources>

@@ -54,15 +54,6 @@ public class TeacherHomeActivity extends AppCompatActivity {
     @Click(R.id.fab)
     public void createNewSession(View view) {
         startActivity(new Intent(TeacherHomeActivity.this, NewSessionActivity_.class));
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("sessionId", "sid1");
-
-        ParseCloud.callFunctionInBackground("requestSession", params, new FunctionCallback<String>() {
-            @Override
-            public void done(String s, ParseException e) {
-                Toast.makeText(getApplicationContext(), "done", Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
 

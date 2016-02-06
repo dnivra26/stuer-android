@@ -12,6 +12,7 @@
     <permission
         android:name="dnivra26.github.io.stuer.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="dnivra26.github.io.stuer.permission.C2D_MESSAGE" />
 
     <application
@@ -35,7 +36,6 @@
             android:label="@string/title_activity_teacher_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NewSessionActivity_" />
-
 
         <service android:name="com.parse.PushService" />
 
@@ -61,7 +61,7 @@
             </intent-filter>
         </receiver>
 
-
+        <activity android:name=".StudentHomeActivity_"></activity>
     </application>
 
 </manifest>
