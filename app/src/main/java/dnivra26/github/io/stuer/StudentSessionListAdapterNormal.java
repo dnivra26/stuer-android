@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,15 +16,33 @@ import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import dnivra26.github.io.stuer.parsemodels.Session;
 
-public class StudentSessionListAdapterNormal extends ArrayAdapter<Session> {
+public class StudentSessionListAdapterNormal extends ArrayAdapter<Session> implements Filterable {
+
+    List<Session> filteredObject;
+    List<Session> originalObject;
 
     public StudentSessionListAdapterNormal(Context context, List<Session> objects) {
         super(context, R.layout.student_session_row, objects);
+        filteredObject = objects;
+        originalObject = objects;
+    }
+
+    public int getCount() {
+        return filteredObject.size();
+    }
+
+    public Session getItem(int position) {
+        return filteredObject.get(position);
+    }
+
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
@@ -64,5 +84,35 @@ public class StudentSessionListAdapterNormal extends ArrayAdapter<Session> {
             }
         });
         return convertView;
+    }
+
+
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                FilterResults results = new FilterResults();
+                List<Session> filteredSessions = new ArrayList<>();
+
+                for (Session session : originalObject) {
+                    if (session.getActivityName().contains(charSequence)) {
+                        filteredSessions.add(session);
+                    }
+                    results.values = filteredSessions;
+                    results.count = filteredSessions.size();
+                }
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                filteredObject = (List<Session>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+
+        return filter;
     }
 }

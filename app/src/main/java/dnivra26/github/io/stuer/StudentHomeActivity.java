@@ -2,6 +2,9 @@ package dnivra26.github.io.stuer;
 
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -23,8 +26,14 @@ public class StudentHomeActivity extends AppCompatActivity {
     @ViewById(R.id.student_session_list)
     ListView studentSessionList;
 
+    @ViewById(R.id.search_text)
+    EditText searchText;
+    private StudentSessionListAdapterNormal adapter;
+
     @AfterViews
     public void init() {
+
+
         final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);
         progressDialog.show();
 
@@ -41,11 +50,29 @@ public class StudentHomeActivity extends AppCompatActivity {
             @Override
             public void done(Object o, Throwable throwable) {
                 List<Session> sessions = ((List) o);
-                studentSessionList.setAdapter(new StudentSessionListAdapterNormal(StudentHomeActivity.this, sessions));
+                adapter = new StudentSessionListAdapterNormal(StudentHomeActivity.this, sessions);
+                studentSessionList.setAdapter(adapter);
                 progressDialog.dismiss();
             }
         });
-        
+
+        searchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 
 
