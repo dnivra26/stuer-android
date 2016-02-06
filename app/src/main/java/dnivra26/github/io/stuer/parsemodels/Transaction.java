@@ -8,4 +8,8 @@ public class Transaction extends ParseObject {
     public void setTeacherConfirm(boolean confirm) {
         put("teacher_confirm", confirm);
     }
+
+    public void setStudentConfirm(boolean confirm) {
+        put("student_confirm", confirm);
+    }
 }

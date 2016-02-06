@@ -20,13 +20,14 @@ import dnivra26.github.io.stuer.parsemodels.Session;
 
 public class StudentSessionListAdapter extends ParseQueryAdapter<Session> {
 
-    public StudentSessionListAdapter(Context context) {
+    public StudentSessionListAdapter(Context context, final String userId) {
         super(context, new ParseQueryAdapter.QueryFactory<Session>() {
 
             @Override
             public ParseQuery<Session> create() {
                 ParseQuery query = new ParseQuery("session");
                 query.whereEqualTo("sid_state", true);
+                query.whereNotEqualTo("user_uuid", userId);
                 return query;
             }
         });

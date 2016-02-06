@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -22,7 +23,7 @@ public class StudentHomeActivity extends AppCompatActivity {
 
     @AfterViews
     public void init() {
-        StudentSessionListAdapter studentSessionListAdapter = new StudentSessionListAdapter(this);
+        StudentSessionListAdapter studentSessionListAdapter = new StudentSessionListAdapter(this, ParseUser.getCurrentUser().getObjectId());
         final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);
         studentSessionListAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<Session>() {
             @Override
