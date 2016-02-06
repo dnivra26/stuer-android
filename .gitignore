@@ -1,0 +1,17 @@
+/captures
+.gradle
+.idea/
+*.iml
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+.env
+/captures
+/app/class_files.txt
+/app/mapping.txt
+/app/seeds.txt
+/app/gen
+/app/src/main/assets/bootstrap/dev
+
