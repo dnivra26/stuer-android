@@ -6,11 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.parse.FunctionCallback;
-import com.parse.ParseCloud;
-import com.parse.ParseException;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
@@ -19,7 +15,6 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.HashMap;
 import java.util.List;
 
 import dnivra26.github.io.stuer.parsemodels.Session;
@@ -35,6 +30,12 @@ public class TeacherHomeActivity extends AppCompatActivity {
 
     @AfterViews
     public void init() {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         TeacherSessionListAdapter teacherSessionListAdapter = new TeacherSessionListAdapter(this, ParseUser.getCurrentUser().getObjectId());
         final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);
         teacherSessionListAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<Session>() {
@@ -49,6 +50,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
             }
         });
         teacherSessionList.setAdapter(teacherSessionListAdapter);
+
     }
 
     @Click(R.id.fab)
