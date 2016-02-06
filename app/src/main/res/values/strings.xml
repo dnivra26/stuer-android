@@ -13,4 +13,5 @@
     <string name="recharge_amount">Recharge amount</string>
     <string name="recharge">RECHARGE</string>
     <string name="done">DONE</string>
+    <string name="logout">Logout</string>
 </resources>
