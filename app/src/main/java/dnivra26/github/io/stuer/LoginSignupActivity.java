@@ -17,6 +17,8 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import dnivra26.github.io.stuer.parsemodels.Wallet;
+
 @EActivity(R.layout.activity_login_signup)
 public class LoginSignupActivity extends AppCompatActivity {
 
@@ -68,7 +70,7 @@ public class LoginSignupActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
 
         } else {
-            ParseUser user = new ParseUser();
+            final ParseUser user = new ParseUser();
 
             user.setUsername(username);
             user.setPassword(password);
@@ -86,10 +88,26 @@ public class LoginSignupActivity extends AppCompatActivity {
                             @Override
                             public void done(ParseException e) {
                                 if (e == null) {
-                                    Toast.makeText(getApplicationContext(),
-                                            "Successfully Signed up, logging in.",
-                                            Toast.LENGTH_LONG).show();
-                                    loginToParse(username, password);
+                                    Wallet wallet = new Wallet();
+                                    wallet.setUserId(user.getObjectId());
+                                    wallet.setBalance(0);
+                                    wallet.saveInBackground(new SaveCallback() {
+                                        @Override
+                                        public void done(ParseException e) {
+                                            if (e == null) {
+                                                Toast.makeText(getApplicationContext(),
+                                                        "Successfully Signed up, logging in.",
+                                                        Toast.LENGTH_LONG).show();
+                                                loginToParse(username, password);
+                                            } else {
+                                                Toast.makeText(getApplicationContext(),
+                                                        "Sign up Error", Toast.LENGTH_LONG)
+                                                        .show();
+                                            }
+                                        }
+                                    });
+
+
                                 } else {
                                     Toast.makeText(getApplicationContext(),
                                             "Sign up Error", Toast.LENGTH_LONG)
