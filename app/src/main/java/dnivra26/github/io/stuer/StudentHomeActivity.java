@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import com.parse.ParseQueryAdapter;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import org.androidannotations.annotations.AfterViews;
@@ -23,20 +25,27 @@ public class StudentHomeActivity extends AppCompatActivity {
 
     @AfterViews
     public void init() {
-        StudentSessionListAdapter studentSessionListAdapter = new StudentSessionListAdapter(this, ParseUser.getCurrentUser().getObjectId());
         final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);
-        studentSessionListAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<Session>() {
+        progressDialog.show();
+
+        ParseQuery parseQuery = new ParseQuery("session");
+        parseQuery.whereEqualTo("sid_state", true);
+        parseQuery.whereNotEqualTo("user_uuid", ParseUser.getCurrentUser().getObjectId());
+
+        parseQuery.findInBackground(new FindCallback() {
             @Override
-            public void onLoading() {
-                progressDialog.show();
+            public void done(List list, ParseException e) {
+
             }
 
             @Override
-            public void onLoaded(List<Session> objects, Exception e) {
+            public void done(Object o, Throwable throwable) {
+                List<Session> sessions = ((List) o);
+                studentSessionList.setAdapter(new StudentSessionListAdapterNormal(StudentHomeActivity.this, sessions));
                 progressDialog.dismiss();
             }
         });
-        studentSessionList.setAdapter(studentSessionListAdapter);
+        
     }
 
 
