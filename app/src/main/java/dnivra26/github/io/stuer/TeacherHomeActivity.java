@@ -1,23 +1,28 @@
 package dnivra26.github.io.stuer;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
+import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.HashMap;
+import java.util.List;
+
+import dnivra26.github.io.stuer.parsemodels.Session;
 
 @EActivity(R.layout.activity_teacher_home)
 public class TeacherHomeActivity extends AppCompatActivity {
@@ -25,9 +30,29 @@ public class TeacherHomeActivity extends AppCompatActivity {
     @ViewById(R.id.fab)
     FloatingActionButton fab;
 
+    @ViewById(R.id.teacher_session_list)
+    ListView teacherSessionList;
+
+    @AfterViews
+    public void init() {
+        TeacherSessionListAdapter teacherSessionListAdapter = new TeacherSessionListAdapter(this, ParseUser.getCurrentUser().getObjectId());
+        final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);
+        teacherSessionListAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<Session>() {
+            @Override
+            public void onLoading() {
+                progressDialog.show();
+            }
+
+            @Override
+            public void onLoaded(List<Session> objects, Exception e) {
+                progressDialog.dismiss();
+            }
+        });
+        teacherSessionList.setAdapter(teacherSessionListAdapter);
+    }
 
     @Click(R.id.fab)
-    public void createNewSession(View view){
+    public void createNewSession(View view) {
         startActivity(new Intent(TeacherHomeActivity.this, NewSessionActivity_.class));
         HashMap<String, Object> params = new HashMap<>();
         params.put("sessionId", "sid1");
