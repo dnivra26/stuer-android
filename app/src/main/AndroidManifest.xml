@@ -74,7 +74,8 @@
 
         <activity android:name=".StudentHomeActivity_" />
         <activity android:name=".MapActivity_" />
-        <activity android:name=".RequestConfirmationActivity"></activity>
+        <activity android:name=".RequestConfirmationActivity" />
+        <activity android:name=".WalletAmount_" />
     </application>
 
 </manifest>

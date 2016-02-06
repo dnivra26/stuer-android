@@ -8,4 +8,8 @@
     <string name="title_activity_teacher_home">TeacherHomeActivity</string>
     <string name="create_session">Create Session</string>
     <string name="request">REQUEST</string>
+    <string name="wallet">WALLET</string>
+    <string name="your_balance">YOUR BALANCE</string>
+    <string name="recharge_amount">Recharge amount</string>
+    <string name="recharge">RECHARGE</string>
 </resources>
