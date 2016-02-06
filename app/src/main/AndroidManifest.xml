@@ -19,7 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity_" />
-        <activity android:name=".LoginSignupActivity_"></activity>
+        <activity android:name=".LoginSignupActivity_" />
+        <activity
+            android:name=".TeacherHomeActivity_"
+            android:label="@string/title_activity_teacher_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".NewSessionActivity_"></activity>
     </application>
 
 </manifest>

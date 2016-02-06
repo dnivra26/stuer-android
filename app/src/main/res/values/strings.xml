@@ -2,4 +2,9 @@
     <string name="app_name">Stuer</string>
     <string name="LoginBtn">Login</string>
     <string name="SignupBtn">SignUp</string>
+    <string name="learn">LEARN</string>
+    <string name="teach">TEACH</string>
+    <string name="i_want_to">I want to</string>
+    <string name="title_activity_teacher_home">TeacherHomeActivity</string>
+    <string name="create_session">Create Session</string>
 </resources>

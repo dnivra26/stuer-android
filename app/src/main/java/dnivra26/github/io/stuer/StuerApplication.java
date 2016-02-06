@@ -4,7 +4,10 @@ import android.app.Application;
 
 import com.parse.Parse;
 import com.parse.ParseACL;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
+
+import dnivra26.github.io.stuer.parsemodels.Session;
 
 public class StuerApplication extends Application {
 
@@ -20,6 +23,8 @@ public class StuerApplication extends Application {
         defaultACL.setPublicReadAccess(true);
 
         ParseACL.setDefaultACL(defaultACL, true);
+
+        ParseObject.registerSubclass(Session.class);
 
     }
 }

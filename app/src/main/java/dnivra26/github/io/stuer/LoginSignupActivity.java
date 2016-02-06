@@ -3,13 +3,10 @@ package dnivra26.github.io.stuer;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.FunctionCallback;
 import com.parse.LogInCallback;
-import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
@@ -19,8 +16,6 @@ import com.parse.SignUpCallback;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
-import java.util.HashMap;
 
 @EActivity(R.layout.activity_login_signup)
 public class LoginSignupActivity extends AppCompatActivity {
@@ -40,7 +35,7 @@ public class LoginSignupActivity extends AppCompatActivity {
 
     }
 
-    public void loginToParse(String username, String password){
+    public void loginToParse(String username, String password) {
 
         final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);
         progressDialog.show();
@@ -115,4 +110,4 @@ public class LoginSignupActivity extends AppCompatActivity {
     }
 
 
-    }
+}
