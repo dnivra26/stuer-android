@@ -12,4 +12,5 @@
     <string name="your_balance">YOUR BALANCE</string>
     <string name="recharge_amount">Recharge amount</string>
     <string name="recharge">RECHARGE</string>
+    <string name="done">DONE</string>
 </resources>

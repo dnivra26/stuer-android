@@ -31,6 +31,7 @@ public class WalletAmount extends AppCompatActivity {
     EditText rechargeAmount;
 
     int currentWalletBalance;
+    Wallet wallet = null;
 
     @AfterViews
     public void init() {
@@ -49,7 +50,7 @@ public class WalletAmount extends AppCompatActivity {
                 if (((List) o).size() == 0) {
                     currentWalletBalance = 0;
                 } else {
-                    Wallet wallet = (Wallet) ((List) o).get(0);
+                    wallet = (Wallet) ((List) o).get(0);
                     currentWalletBalance = wallet.getBalance();
                 }
                 walletBalance.setText("Rs " + currentWalletBalance);
@@ -63,7 +64,9 @@ public class WalletAmount extends AppCompatActivity {
     @Click(R.id.recharge)
     public void rechargeWallet() {
         int amount = Integer.parseInt(rechargeAmount.getText().toString());
-        final Wallet wallet = new Wallet();
+        if (wallet == null) {
+            wallet = new Wallet();
+        }
         wallet.setBalance(currentWalletBalance + amount);
         wallet.setUserId(ParseUser.getCurrentUser().getObjectId());
         final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);

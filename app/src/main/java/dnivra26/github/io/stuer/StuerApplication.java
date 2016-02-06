@@ -9,6 +9,7 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import dnivra26.github.io.stuer.parsemodels.Session;
+import dnivra26.github.io.stuer.parsemodels.Transaction;
 import dnivra26.github.io.stuer.parsemodels.Wallet;
 
 public class StuerApplication extends Application {
@@ -29,6 +30,7 @@ public class StuerApplication extends Application {
 
         ParseObject.registerSubclass(Session.class);
         ParseObject.registerSubclass(Wallet.class);
+        ParseObject.registerSubclass(Transaction.class);
 
     }
 }

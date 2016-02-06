@@ -20,7 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     @Click(R.id.learn)
     public void navigateToStudentsHome() {
         startActivity(new Intent(HomeActivity.this, StudentHomeActivity_.class));
-//        startActivity(new Intent(HomeActivity.this, MapActivity_.class));
+        //startActivity(new Intent(HomeActivity.this, MapActivity_.class));
     }
 
     @Override

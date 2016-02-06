@@ -1,14 +1,23 @@
 package dnivra26.github.io.stuer;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.SaveCallback;
+
+import java.util.List;
 
 import dnivra26.github.io.stuer.parsemodels.Session;
+import dnivra26.github.io.stuer.parsemodels.Transaction;
 
 public class TeacherSessionListAdapter extends ParseQueryAdapter<Session> {
 
@@ -25,7 +34,7 @@ public class TeacherSessionListAdapter extends ParseQueryAdapter<Session> {
     }
 
     @Override
-    public View getItemView(Session session, View v, ViewGroup parent) {
+    public View getItemView(final Session session, View v, ViewGroup parent) {
         if (v == null) {
             v = View.inflate(getContext(), R.layout.teacher_session_row, null);
         }
@@ -48,6 +57,45 @@ public class TeacherSessionListAdapter extends ParseQueryAdapter<Session> {
 
         TextView sessionTime = (TextView) v.findViewById(R.id.row_session_datetime);
         sessionTime.setText(session.getTime().toString());
+
+        Button doneSession = (Button) v.findViewById(R.id.done_session);
+        doneSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final ProgressDialog progressDialog = UiUtil.buildProgressDialog(getContext());
+                progressDialog.show();
+                ParseQuery parseQuery = new ParseQuery("transaction");
+                parseQuery.whereEqualTo("session_id", session.getSid());
+                parseQuery.findInBackground(new FindCallback() {
+                    @Override
+                    public void done(List list, ParseException e) {
+
+                    }
+
+                    @Override
+                    public void done(Object o, Throwable throwable) {
+                        Transaction transaction = (Transaction) ((List) o).get(0);
+                        transaction.setTeacherConfirm(true);
+                        transaction.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if (e == null) {
+                                    Toast.makeText(getContext(),
+                                            "Update successful",
+                                            Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(getContext(),
+                                            "Update failed",
+                                            Toast.LENGTH_LONG).show();
+                                }
+                                progressDialog.dismiss();
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
 
         return v;
     }

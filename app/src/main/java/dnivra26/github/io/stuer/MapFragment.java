@@ -10,6 +10,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -20,7 +21,7 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
         GoogleMap.OnInfoWindowClickListener,
         GoogleMap.OnMapLongClickListener,
         GoogleMap.OnMapClickListener,
-        GoogleMap.OnMarkerClickListener {
+        GoogleMap.OnMarkerClickListener, OnMapReadyCallback {
 
     private GoogleApiClient mGoogleApiClient;
     private Location mCurrentLocation;
@@ -63,11 +64,12 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
 
     @Override
     public void onConnected(Bundle bundle) {
-        mCurrentLocation = LocationServices
-                .FusedLocationApi
-                .getLastLocation(mGoogleApiClient);
-
-        initCamera(mCurrentLocation);
+        getMapAsync(this);
+//        mCurrentLocation = LocationServices
+//                .FusedLocationApi
+//                .getLastLocation(mGoogleApiClient);
+//
+//        initCamera(mCurrentLocation);
     }
 
     private void initCamera(Location location) {
@@ -115,5 +117,22 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
     @Override
     public boolean onMarkerClick(Marker marker) {
         return false;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        googleMap.setMyLocationEnabled(true);
+        mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+
+        googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+                initCamera(mCurrentLocation);
+            }
+        });
+
+
+
     }
 }

@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.parse.FunctionCallback;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 
 import java.util.HashMap;
 
@@ -33,9 +34,9 @@ public class RequestConfirmationActivity extends AppCompatActivity {
                 params.put("sessionId", requestMessage.getSession_id());
                 params.put("student_uuid", requestMessage.getStudent_uuid());
 
-                ParseCloud.callFunctionInBackground("confirmSession", params, new FunctionCallback<String>() {
+                ParseCloud.callFunctionInBackground("confirmSession", params, new FunctionCallback<ParseObject>() {
                     @Override
-                    public void done(String s, ParseException e) {
+                    public void done(ParseObject parseObject, ParseException e) {
                         Toast.makeText(RequestConfirmationActivity.this, "Thank You. Session is confirmed", Toast.LENGTH_LONG).show();
                         finish();
                     }
