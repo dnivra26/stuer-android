@@ -35,6 +35,7 @@ public class LoginSignupActivity extends AppCompatActivity {
         String password = passwordEditText.getText().toString();
         loginToParse(username, password);
 
+
     }
 
     public void loginToParse(String username, String password) {
@@ -49,6 +50,7 @@ public class LoginSignupActivity extends AppCompatActivity {
                             "Successfully Logged In",
                             Toast.LENGTH_LONG).show();
                     startActivity(new Intent(LoginSignupActivity.this, MainActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(getApplicationContext(),
                             "Log in Error", Toast.LENGTH_LONG)

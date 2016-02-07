@@ -3,6 +3,7 @@ package dnivra26.github.io.stuer;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.DatePicker;
@@ -44,6 +45,8 @@ public class NewSessionActivity extends AppCompatActivity implements DatePickerD
 
     @ViewById(R.id.session_duration)
     EditText sessionDuration;
+
+
     private int year;
     private int month;
     private int day;
@@ -60,6 +63,11 @@ public class NewSessionActivity extends AppCompatActivity implements DatePickerD
     public void pickTime() {
         DialogFragment newFragment = new TimePickerFragment();
         newFragment.show(getSupportFragmentManager(), "timePicker");
+    }
+
+    @Click(R.id.pickLocation)
+    public void pickLocation() {
+        startActivityForResult(new Intent(NewSessionActivity.this, MapActivity_.class), 111);
     }
 
 
@@ -107,5 +115,15 @@ public class NewSessionActivity extends AppCompatActivity implements DatePickerD
         this.hour = hour;
         this.minute = minute;
         sessionTime.setText(hour + " : " + minute);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 111) {
+            if (data != null) {
+                sessionLocation.setText(data.getDoubleExtra("lat", 0.0) + "," + data.getDoubleExtra("lng", 0.0));
+            }
+        }
     }
 }
