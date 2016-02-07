@@ -12,6 +12,8 @@ public class MapActivity extends AppCompatActivity {
 
     public void onMapLongClick(LatLng latLng) {
         Intent intent = new Intent(MapActivity.this, NewSessionActivity_.class);
+        String address = ReverseGeoCoder.reverse(this, latLng.latitude, latLng.longitude);
+        intent.putExtra("address", address);
         intent.putExtra("lat", latLng.latitude);
         intent.putExtra("lng", latLng.longitude);
         setResult(111, intent);

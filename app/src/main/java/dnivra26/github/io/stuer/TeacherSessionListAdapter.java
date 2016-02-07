@@ -53,7 +53,7 @@ public class TeacherSessionListAdapter extends ParseQueryAdapter<Session> {
         sessionFare.setText(String.valueOf(session.getFare()) + "");
 
         TextView sessionLocation = (TextView) v.findViewById(R.id.row_session_location);
-        sessionLocation.setText(session.getLocation().toString());
+        sessionLocation.setText(session.getAddress());
 
         TextView sessionDuration = (TextView) v.findViewById(R.id.row_session_duration);
         sessionDuration.setText(String.valueOf(session.getDuration()) + "");

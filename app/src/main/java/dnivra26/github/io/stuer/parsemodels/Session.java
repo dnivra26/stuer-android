@@ -64,11 +64,19 @@ public class Session extends ParseObject {
         return getDate("time");
     }
 
-    public void setSid(String uuid){
-        put("sid",uuid);
+    public void setSid(String uuid) {
+        put("sid", uuid);
     }
 
-    public String getSid(){
+    public String getSid() {
         return getString("sid");
+    }
+
+    public void setAddress(String address) {
+        put("address", address);
+    }
+
+    public String getAddress() {
+        return getString("address");
     }
 }

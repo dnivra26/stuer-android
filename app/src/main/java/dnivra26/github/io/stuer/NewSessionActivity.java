@@ -52,6 +52,7 @@ public class NewSessionActivity extends AppCompatActivity implements DatePickerD
     private int day;
     private int hour;
     private int minute;
+    private String address = "";
 
     @Click(R.id.session_date)
     public void pickDate() {
@@ -84,6 +85,7 @@ public class NewSessionActivity extends AppCompatActivity implements DatePickerD
         String[] location = sessionLocation.getText().toString().split(",");
         ParseGeoPoint parseGeoPoint = new ParseGeoPoint(Double.parseDouble(location[0]), Double.parseDouble(location[1]));
         session.setLocation(parseGeoPoint);
+        session.setAddress(address);
         Date date = new Date(year, month, day, hour, minute);
         session.setTime(date);
         session.setSid(UUID.randomUUID().toString());
@@ -123,6 +125,7 @@ public class NewSessionActivity extends AppCompatActivity implements DatePickerD
         if (requestCode == 111) {
             if (data != null) {
                 sessionLocation.setText(data.getDoubleExtra("lat", 0.0) + "," + data.getDoubleExtra("lng", 0.0));
+                address = data.getStringExtra("address");
             }
         }
     }

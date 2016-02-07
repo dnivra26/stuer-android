@@ -109,11 +109,12 @@ public class MapFragmentPick extends SupportMapFragment implements GoogleApiClie
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
         googleMap.setMyLocationEnabled(true);
         googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
+                googleMap.setOnMapLongClickListener(null);
                 ((MapActivity) getActivity()).onMapLongClick(latLng);
             }
         });

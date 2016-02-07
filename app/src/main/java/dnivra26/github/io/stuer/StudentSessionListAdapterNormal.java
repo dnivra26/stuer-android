@@ -56,13 +56,15 @@ public class StudentSessionListAdapterNormal extends ArrayAdapter<Session> imple
         sessionName.setText(session.getActivityName());
 
         TextView sessionFare = (TextView) convertView.findViewById(R.id.student_row_session_fare);
-        sessionFare.setText(String.valueOf(session.getFare()) + "");
+        sessionFare.setText(String.valueOf("Rs. " + session.getFare()));
 
         TextView sessionLocation = (TextView) convertView.findViewById(R.id.student_row_session_location);
-        sessionLocation.setText(session.getLocation().toString());
+
+
+        sessionLocation.setText(session.getAddress());
 
         TextView sessionDuration = (TextView) convertView.findViewById(R.id.student_row_session_duration);
-        sessionDuration.setText(String.valueOf(session.getDuration()) + "");
+        sessionDuration.setText(String.valueOf(session.getDuration()) + " hrs");
 
         TextView sessionTime = (TextView) convertView.findViewById(R.id.student_row_session_datetime);
         sessionTime.setText(session.getTime().toString());

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -13,42 +14,62 @@
         android:layout_marginBottom="5dp"
         card_view:cardCornerRadius="4dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="16dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/student_row_session_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="Yoga" />
 
             <TextView
                 android:id="@+id/student_row_session_fare"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginBottom="10dp"
+                tools:text="Rs. 200" />
 
             <TextView
                 android:id="@+id/student_row_session_location"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/student_row_session_name"
+                android:layout_marginBottom="10dp"
+                tools:text="12.3456, 32.3456" />
 
             <TextView
                 android:id="@+id/student_row_session_duration"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/student_row_session_location"
+                android:layout_marginBottom="10dp"
+                tools:text="2 hrs" />
 
             <TextView
                 android:id="@+id/student_row_session_datetime"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/student_row_session_duration"
+                tools:text="2016-02-14 12:08:00" />
 
             <Button
                 android:id="@+id/request_session"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/request" />
-        </LinearLayout>
+                android:layout_alignBottom="@+id/student_row_session_datetime"
+                android:layout_alignParentEnd="true"
+                android:background="@color/colorPrimary"
+                android:text="@string/request"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 

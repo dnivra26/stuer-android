@@ -25,6 +25,7 @@ public class StuerApplication extends Application {
         ParseACL defaultACL = new ParseACL();
 
         defaultACL.setPublicReadAccess(true);
+        defaultACL.setPublicWriteAccess(true);
 
         ParseACL.setDefaultACL(defaultACL, true);
 
