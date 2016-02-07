@@ -153,15 +153,15 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
             double longitude = session.getLocation().getLongitude();
             MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(latitude,
                     longitude)).title(session.getActivityName());
-            markerOptions.snippet(session.getTime() + "   Rs." +session.getFare());
+            markerOptions.snippet(session.getTime() + "   Rs." + session.getFare());
 
             Marker marker = googleMap.addMarker(markerOptions);
 
         }
         if (mCurrentLocation == null) {
             mCurrentLocation = new Location("");
-            mCurrentLocation.setLongitude(12.3);
-            mCurrentLocation.setLongitude(10.3);
+            mCurrentLocation.setLatitude(12.9317);
+            mCurrentLocation.setLongitude(77.6227);
         }
         initCamera(mCurrentLocation);
 

@@ -125,8 +125,8 @@ public class MapFragmentPick extends SupportMapFragment implements GoogleApiClie
                 mGoogleApiClient);
         if (mCurrentLocation == null) {
             mCurrentLocation = new Location("");
-            mCurrentLocation.setLongitude(12.3);
-            mCurrentLocation.setLongitude(10.3);
+            mCurrentLocation.setLatitude(12.9317);
+            mCurrentLocation.setLongitude(77.6227);
         }
         initCamera(mCurrentLocation);
 

@@ -53,6 +53,7 @@ public class StudentSessionListAdapterNormal extends ArrayAdapter<Session> imple
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.student_session_row, parent, false);
         }
 
+
         TextView sessionName = (TextView) convertView.findViewById(R.id.student_row_session_name);
         sessionName.setText(session.getActivityName());
 
