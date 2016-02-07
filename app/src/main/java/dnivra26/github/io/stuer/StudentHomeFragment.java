@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dnivra26.github.io.stuer.parsemodels.Session;
@@ -57,6 +59,7 @@ public class StudentHomeFragment extends Fragment {
         studentSessionList = (ListView) view.findViewById(R.id.student_session_list);
         emptyStudentSession = (TextView) view.findViewById(R.id.empty_student_session);
         studentSessionList.setEmptyView(emptyStudentSession);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         init();
     }
 
@@ -88,7 +91,7 @@ public class StudentHomeFragment extends Fragment {
 
             @Override
             public void done(Object o, Throwable throwable) {
-                List<Session> sessions = ((List) o);
+                List<Session> sessions = ((List) o) == null ? new ArrayList<Session>() : ((List) o);
                 adapter = new StudentSessionListAdapterNormal(getActivity(), sessions);
                 studentSessionList.setAdapter(adapter);
                 progressDialog.dismiss();

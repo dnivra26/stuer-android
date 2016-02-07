@@ -92,19 +92,13 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
     @Override
     public void onConnected(Bundle bundle) {
         initListeners();
-
-//        mCurrentLocation = LocationServices
-//                .FusedLocationApi
-//                .getLastLocation(mGoogleApiClient);
-//
-//        initCamera(mCurrentLocation);
     }
 
     private void initCamera(Location location) {
         CameraPosition position = CameraPosition.builder()
                 .target(new LatLng(location.getLatitude(),
                         location.getLongitude()))
-                .zoom(16f)
+                .zoom(8f)
                 .bearing(0.0f)
                 .tilt(0.0f)
                 .build();
@@ -157,13 +151,11 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
 
             double latitude = session.getLocation().getLatitude();
             double longitude = session.getLocation().getLongitude();
-            Marker marker = googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude,
+            googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude,
                     longitude)).title(session.getActivityName()));
-            Location location = new Location("");
-            location.setLatitude(latitude);
-            location.setLongitude(longitude);
-            initCamera(location);
         }
+
+        initCamera(mCurrentLocation);
 
 
     }
