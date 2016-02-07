@@ -26,7 +26,6 @@ public class StudentSessionListAdapter extends ParseQueryAdapter<Session> {
             @Override
             public ParseQuery<Session> create() {
                 ParseQuery query = new ParseQuery("session");
-                query.whereEqualTo("sid_state", true);
                 query.whereNotEqualTo("user_uuid", userId);
                 return query;
             }

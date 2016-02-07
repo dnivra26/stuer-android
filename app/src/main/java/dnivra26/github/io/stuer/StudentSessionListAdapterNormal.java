@@ -1,6 +1,7 @@
 package dnivra26.github.io.stuer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,18 @@ public class StudentSessionListAdapterNormal extends ArrayAdapter<Session> imple
 
         TextView sessionName = (TextView) convertView.findViewById(R.id.student_row_session_name);
         sessionName.setText(session.getActivityName());
+
+        TextView instructorId = (TextView) convertView.findViewById(R.id.instructor_id);
+        instructorId.setText(session.getUserId());
+
+        instructorId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), UserDetailActivity_.class);
+                intent.putExtra("user_id", session.getUserId());
+                getContext().startActivity(intent);
+            }
+        });
 
         TextView sessionFare = (TextView) convertView.findViewById(R.id.student_row_session_fare);
         sessionFare.setText(String.valueOf("Rs. " + session.getFare()));

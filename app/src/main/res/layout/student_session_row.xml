@@ -29,6 +29,16 @@
                 tools:text="Yoga" />
 
             <TextView
+                android:id="@+id/instructor_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/student_row_session_name"
+                android:autoLink="web"
+                android:linksClickable="true"
+                tools:text="arvind th" />
+
+            <TextView
                 android:id="@+id/student_row_session_fare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

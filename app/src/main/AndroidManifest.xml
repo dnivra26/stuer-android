@@ -77,6 +77,7 @@
         <activity android:name=".MapActivity_" />
         <activity android:name=".RequestConfirmationActivity" />
         <activity android:name=".WalletAmount_" />
+        <activity android:name=".UserDetailActivity_"></activity>
     </application>
 
 </manifest>
