@@ -9,11 +9,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.SaveCallback;
 
+import java.util.HashMap;
 import java.util.List;
 
 import dnivra26.github.io.stuer.parsemodels.Session;
@@ -74,7 +77,7 @@ public class TeacherSessionListAdapter extends ParseQueryAdapter<Session> {
 
                     @Override
                     public void done(Object o, Throwable throwable) {
-                        Transaction transaction = (Transaction) ((List) o).get(0);
+                        final Transaction transaction = (Transaction) ((List) o).get(0);
                         transaction.setTeacherConfirm(true);
                         transaction.saveInBackground(new SaveCallback() {
                             @Override
@@ -83,6 +86,21 @@ public class TeacherSessionListAdapter extends ParseQueryAdapter<Session> {
                                     Toast.makeText(getContext(),
                                             "Update successful",
                                             Toast.LENGTH_LONG).show();
+
+                                    HashMap<String, Object> params = new HashMap<>();
+                                    params.put("sessionId", session.getSid());
+                                    params.put("student_uuid", transaction.getStudentId());
+
+                                    ParseCloud.callFunctionInBackground("confirmComplete", params, new FunctionCallback<Object>() {
+                                        @Override
+                                        public void done(Object object, ParseException e) {
+                                            Toast.makeText(getContext(),
+                                                    "Update successful",
+                                                    Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+
+
                                 } else {
                                     Toast.makeText(getContext(),
                                             "Update failed",

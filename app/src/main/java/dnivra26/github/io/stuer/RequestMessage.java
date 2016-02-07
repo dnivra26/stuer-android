@@ -1,12 +1,18 @@
 package dnivra26.github.io.stuer;
 
 public class RequestMessage {
+    public String getType() {
+        return type;
+    }
+
+    private final String type;
     String alert;
 
-    public RequestMessage(String alert, String session_id, String student_uuid) {
+    public RequestMessage(String alert, String session_id, String student_uuid, String type) {
         this.alert = alert;
         this.session_id = session_id;
         this.student_uuid = student_uuid;
+        this.type = type;
     }
 
     public String getAlert() {

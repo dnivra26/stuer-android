@@ -12,4 +12,8 @@ public class Transaction extends ParseObject {
     public void setStudentConfirm(boolean confirm) {
         put("student_confirm", confirm);
     }
+
+    public String getStudentId() {
+        return getString("student_uuid");
+    }
 }
