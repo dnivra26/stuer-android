@@ -67,7 +67,7 @@ public class StudentSessionListAdapterNormal extends ArrayAdapter<Session> imple
         sessionDuration.setText(String.valueOf(session.getDuration()) + " hrs");
 
         TextView sessionTime = (TextView) convertView.findViewById(R.id.student_row_session_datetime);
-        sessionTime.setText(session.getTime().toString());
+        sessionTime.setText(session.getTime());
 
         Button request = (Button) convertView.findViewById(R.id.request_session);
         request.setOnClickListener(new View.OnClickListener() {

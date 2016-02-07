@@ -53,7 +53,7 @@ public class StudentSessionListAdapter extends ParseQueryAdapter<Session> {
         sessionDuration.setText(String.valueOf(session.getDuration()) + "");
 
         TextView sessionTime = (TextView) v.findViewById(R.id.student_row_session_datetime);
-        sessionTime.setText(session.getTime().toString());
+        sessionTime.setText(session.getTime());
 
         Button request = (Button) v.findViewById(R.id.request_session);
         request.setOnClickListener(new View.OnClickListener() {

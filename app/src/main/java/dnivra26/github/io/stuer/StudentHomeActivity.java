@@ -20,6 +20,7 @@ public class StudentHomeActivity extends AppCompatActivity {
 
     @AfterViews
     public void init() {
+        getSupportActionBar().setTitle("Available sessions");
         tabLayout.addTab(tabLayout.newTab().setText("List"));
         tabLayout.addTab(tabLayout.newTab().setText("Nearby"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

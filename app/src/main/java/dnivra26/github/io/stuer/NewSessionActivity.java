@@ -16,6 +16,7 @@ import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
@@ -71,6 +72,11 @@ public class NewSessionActivity extends AppCompatActivity implements DatePickerD
         startActivityForResult(new Intent(NewSessionActivity.this, MapActivity_.class), 111);
     }
 
+
+    @AfterViews
+    public void init() {
+        getSupportActionBar().setTitle("New Session");
+    }
 
     @Click(R.id.create_session)
     public void createSession() {

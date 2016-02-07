@@ -151,8 +151,12 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
 
             double latitude = session.getLocation().getLatitude();
             double longitude = session.getLocation().getLongitude();
-            googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude,
-                    longitude)).title(session.getActivityName()));
+            MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(latitude,
+                    longitude)).title(session.getActivityName());
+            markerOptions.snippet(session.getTime() + "   Rs." +session.getFare());
+
+            Marker marker = googleMap.addMarker(markerOptions);
+
         }
         if (mCurrentLocation == null) {
             mCurrentLocation = new Location("");

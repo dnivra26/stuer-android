@@ -59,7 +59,7 @@ public class TeacherSessionListAdapter extends ParseQueryAdapter<Session> {
         sessionDuration.setText(String.valueOf(session.getDuration()) + "");
 
         TextView sessionTime = (TextView) v.findViewById(R.id.row_session_datetime);
-        sessionTime.setText(session.getTime().toString());
+        sessionTime.setText(session.getTime());
 
         Button doneSession = (Button) v.findViewById(R.id.done_session);
         doneSession.setOnClickListener(new View.OnClickListener() {

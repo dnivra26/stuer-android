@@ -60,8 +60,10 @@ public class Session extends ParseObject {
         put("time", date);
     }
 
-    public Date getTime() {
-        return getDate("time");
+    public String getTime() {
+
+        Date time = getDate("time");
+        return time.getYear() + "-" + (time.getMonth() + 1) + "-" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes();
     }
 
     public void setSid(String uuid) {
