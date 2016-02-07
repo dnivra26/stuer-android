@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
@@ -28,9 +29,12 @@ public class TeacherHomeActivity extends AppCompatActivity {
     @ViewById(R.id.teacher_session_list)
     ListView teacherSessionList;
 
+    @ViewById(R.id.empty_teacher_session)
+    TextView emptyTeacherSession;
+
     @AfterViews
     public void init() {
-
+        teacherSessionList.setEmptyView(emptyTeacherSession);
     }
 
     @Override

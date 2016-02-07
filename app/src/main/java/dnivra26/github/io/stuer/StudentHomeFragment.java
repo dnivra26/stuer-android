@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -30,6 +31,7 @@ public class StudentHomeFragment extends Fragment {
 
 
     EditText searchText;
+    TextView emptyStudentSession;
     private StudentSessionListAdapterNormal adapter;
 
     public StudentHomeFragment() {
@@ -53,6 +55,8 @@ public class StudentHomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         searchText = (EditText) view.findViewById(R.id.search_text);
         studentSessionList = (ListView) view.findViewById(R.id.student_session_list);
+        emptyStudentSession = (TextView) view.findViewById(R.id.empty_student_session);
+        studentSessionList.setEmptyView(emptyStudentSession);
         init();
     }
 

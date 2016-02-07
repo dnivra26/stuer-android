@@ -1,12 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="6dp"
     android:paddingLeft="6dp"
     android:paddingRight="6dp"
     android:paddingTop="6dp"
-    android:orientation="vertical"
     tools:context="dnivra26.github.io.stuer.StudentHomeFragment">
 
     <EditText
@@ -19,7 +19,15 @@
         android:id="@+id/student_session_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/search_text"
         android:divider="@null" />
 
+    <TextView
+        android:id="@+id/empty_student_session"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/no_sessions_yet_student" />
 
-</LinearLayout>
+
+</RelativeLayout>

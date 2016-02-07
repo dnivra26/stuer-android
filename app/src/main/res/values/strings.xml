@@ -17,4 +17,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_sessions_yet">You don\'t have any sessions yet. Go ahead create one.</string>
+    <string name="no_sessions_yet_student">No sessions yet. Keep checking frequently :)</string>
 </resources>
