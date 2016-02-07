@@ -80,15 +80,27 @@ public class NewSessionActivity extends AppCompatActivity implements DatePickerD
 
     @Click(R.id.create_session)
     public void createSession() {
+        String sessionName = this.sessionName.getText().toString().trim();
+        String duration = sessionDuration.getText().toString();
+        String fare = sessionFee.getText().toString();
+        String[] location = sessionLocation.getText().toString().split(",");
+
+        if (sessionName.isEmpty() || duration.isEmpty() || fare.isEmpty() || location.length != 2) {
+            Toast.makeText(getApplicationContext(), "Please check the details provided", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);
         progressDialog.show();
+
         Session session = new Session();
-        session.setActivity(sessionName.getText().toString().trim());
-        session.setDuration(Integer.parseInt(sessionDuration.getText().toString()));
-        session.setFare(Integer.parseInt(sessionFee.getText().toString()));
+
+
+        session.setActivity(sessionName);
+        session.setDuration(Integer.parseInt(duration));
+        session.setFare(Integer.parseInt(fare));
         session.setSidBool(true);
         session.setUserId(ParseUser.getCurrentUser().getObjectId());
-        String[] location = sessionLocation.getText().toString().split(",");
         ParseGeoPoint parseGeoPoint = new ParseGeoPoint(Double.parseDouble(location[0]), Double.parseDouble(location[1]));
         session.setLocation(parseGeoPoint);
         session.setAddress(address);
