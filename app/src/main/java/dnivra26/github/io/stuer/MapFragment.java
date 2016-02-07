@@ -1,5 +1,6 @@
 package dnivra26.github.io.stuer;
 
+import android.app.ProgressDialog;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,15 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.util.List;
+
+import dnivra26.github.io.stuer.parsemodels.Session;
 
 public class MapFragment extends SupportMapFragment implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
@@ -25,6 +35,7 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
 
     private GoogleApiClient mGoogleApiClient;
     private Location mCurrentLocation;
+    private List<Session> sessions;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -38,7 +49,7 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
                 .addApi(LocationServices.API)
                 .build();
 
-        initListeners();
+
     }
 
     @Override
@@ -56,15 +67,32 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
     }
 
     private void initListeners() {
-//        getMap().setOnMarkerClickListener(this);
-//        getMap().setOnMapLongClickListener(this);
-//        getMap().setOnInfoWindowClickListener(this);
-//        getMap().setOnMapClickListener(this);
+        final ProgressDialog progressDialog = UiUtil.buildProgressDialog(getActivity());
+        progressDialog.show();
+
+        ParseQuery parseQuery = new ParseQuery("session");
+        parseQuery.whereEqualTo("sid_state", true);
+        parseQuery.whereNotEqualTo("user_uuid", ParseUser.getCurrentUser().getObjectId());
+
+        parseQuery.findInBackground(new FindCallback() {
+            @Override
+            public void done(List list, ParseException e) {
+
+            }
+
+            @Override
+            public void done(Object o, Throwable throwable) {
+                sessions = ((List) o);
+                getMapAsync(MapFragment.this);
+                progressDialog.dismiss();
+            }
+        });
     }
 
     @Override
     public void onConnected(Bundle bundle) {
-        getMapAsync(this);
+        initListeners();
+
 //        mCurrentLocation = LocationServices
 //                .FusedLocationApi
 //                .getLastLocation(mGoogleApiClient);
@@ -125,12 +153,17 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
         mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
 
-        googleMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
-            @Override
-            public void onMyLocationChange(Location location) {
-                initCamera(mCurrentLocation);
-            }
-        });
+        for (Session session : sessions) {
+
+            double latitude = session.getLocation().getLatitude();
+            double longitude = session.getLocation().getLongitude();
+            Marker marker = googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude,
+                    longitude)).title(session.getActivityName()));
+            Location location = new Location("");
+            location.setLatitude(latitude);
+            location.setLongitude(longitude);
+            initCamera(location);
+        }
 
 
     }
