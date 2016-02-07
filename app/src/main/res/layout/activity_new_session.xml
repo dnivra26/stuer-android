@@ -58,7 +58,20 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="session fee in Rs. "
-            android:inputType="text"
+            android:inputType="number"
+            android:textColor="@android:color/black" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/session_duration"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="session duration in hrs"
+            android:inputType="number"
             android:textColor="@android:color/black" />
     </android.support.design.widget.TextInputLayout>
 
@@ -82,19 +95,6 @@
         android:padding="0dp"
         android:src="@drawable/ic_map_icon"
         android:text="Pick location" />
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/session_duration"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="session duration in hrs"
-            android:inputType="text"
-            android:textColor="@android:color/black" />
-    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/create_session"

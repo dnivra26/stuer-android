@@ -31,6 +31,7 @@ public class TeacherSessionListAdapter extends ParseQueryAdapter<Session> {
             public ParseQuery<Session> create() {
                 ParseQuery query = new ParseQuery("session");
                 query.whereEqualTo("user_uuid", userId);
+                query.whereEqualTo("sid_state", true);
                 return query;
             }
         });
@@ -46,17 +47,15 @@ public class TeacherSessionListAdapter extends ParseQueryAdapter<Session> {
         TextView sessionName = (TextView) v.findViewById(R.id.row_session_name);
         sessionName.setText(session.getActivityName());
 
-        TextView sessionValid = (TextView) v.findViewById(R.id.row_session_valid);
-        sessionValid.setText(session.getSidBool() + "");
 
         TextView sessionFare = (TextView) v.findViewById(R.id.row_session_fare);
-        sessionFare.setText(String.valueOf(session.getFare()) + "");
+        sessionFare.setText("RS. " + String.valueOf(session.getFare()) + "");
 
         TextView sessionLocation = (TextView) v.findViewById(R.id.row_session_location);
         sessionLocation.setText(session.getAddress());
 
         TextView sessionDuration = (TextView) v.findViewById(R.id.row_session_duration);
-        sessionDuration.setText(String.valueOf(session.getDuration()) + "");
+        sessionDuration.setText(String.valueOf(session.getDuration()) + " hrs");
 
         TextView sessionTime = (TextView) v.findViewById(R.id.row_session_datetime);
         sessionTime.setText(session.getTime());

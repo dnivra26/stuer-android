@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -13,49 +14,64 @@
         android:layout_marginBottom="5dp"
         card_view:cardCornerRadius="4dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="16dp"
             android:orientation="vertical">
 
 
             <TextView
                 android:id="@+id/row_session_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/row_session_valid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:text="Clasical music" />
 
             <TextView
                 android:id="@+id/row_session_fare"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/row_session_name"
+                android:layout_marginBottom="10dp"
+                tools:text="Rs. 200" />
 
             <TextView
                 android:id="@+id/row_session_location"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/row_session_fare"
+                android:layout_marginBottom="10dp"
+                tools:text="Koramangala, Bangalore" />
 
             <TextView
                 android:id="@+id/row_session_duration"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@id/row_session_location"
+                android:layout_marginBottom="10dp"
+                tools:text="2 hrs" />
 
             <TextView
                 android:id="@+id/row_session_datetime"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/row_session_duration"
+                tools:text="2016-02-14 12:08:00" />
 
             <Button
                 android:id="@+id/done_session"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/done" />
+                android:layout_alignBottom="@+id/row_session_datetime"
+                android:layout_alignParentEnd="true"
+                android:background="@color/colorPrimary"
+                android:text="@string/done"
+                android:textColor="@android:color/white" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 </LinearLayout>

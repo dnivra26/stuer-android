@@ -35,11 +35,13 @@ public class TeacherHomeActivity extends AppCompatActivity {
     @AfterViews
     public void init() {
         teacherSessionList.setEmptyView(emptyTeacherSession);
+        getSupportActionBar().setTitle("My Sessions");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
         TeacherSessionListAdapter teacherSessionListAdapter = new TeacherSessionListAdapter(this, ParseUser.getCurrentUser().getObjectId());
         final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);
         teacherSessionListAdapter.addOnQueryLoadListener(new ParseQueryAdapter.OnQueryLoadListener<Session>() {

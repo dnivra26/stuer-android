@@ -35,6 +35,7 @@ public class WalletAmount extends AppCompatActivity {
 
     @AfterViews
     public void init() {
+        getSupportActionBar().setTitle("Wallet");
         final ProgressDialog progressDialog = UiUtil.buildProgressDialog(this);
         progressDialog.show();
         ParseQuery parseQuery = new ParseQuery("wallet");
