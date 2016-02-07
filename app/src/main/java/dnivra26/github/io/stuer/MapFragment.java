@@ -56,10 +56,10 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
     }
 
     private void initListeners() {
-        getMap().setOnMarkerClickListener(this);
-        getMap().setOnMapLongClickListener(this);
-        getMap().setOnInfoWindowClickListener(this);
-        getMap().setOnMapClickListener(this);
+//        getMap().setOnMarkerClickListener(this);
+//        getMap().setOnMapLongClickListener(this);
+//        getMap().setOnInfoWindowClickListener(this);
+//        getMap().setOnMapClickListener(this);
     }
 
     @Override
@@ -131,7 +131,6 @@ public class MapFragment extends SupportMapFragment implements GoogleApiClient.C
                 initCamera(mCurrentLocation);
             }
         });
-
 
 
     }
